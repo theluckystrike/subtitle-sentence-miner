@@ -1,7 +1,7 @@
 {
 	"id": "subtitle-sentence-miner",
 	"name": "Subtitle Sentence Miner",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"minAppVersion": "1.13.4",
 	"description": "Create sentence cards from local subtitle files and keep each source path and timestamp.",
 	"author": "Michael Lip",

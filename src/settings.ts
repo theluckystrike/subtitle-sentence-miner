@@ -3,6 +3,7 @@ import { sponsorsSettingItems } from './license/github-obsidian';
 import { PRO_UI } from './pro';
 import { validateTemplate, type CardTemplate } from './cards';
 import type SubtitleSentenceMinerPlugin from './main';
+import { helloSettingItems } from './hello/settings';
 
 export interface SubtitleSentenceMinerSettings { outputPath: string; templates: CardTemplate[] }
 export const DEFAULT_SETTINGS: SubtitleSentenceMinerSettings = { outputPath: 'Sentence cards/Subtitle cards.md', templates: [] };
@@ -23,6 +24,11 @@ export class SubtitleSentenceMinerSettingTab extends PluginSettingTab {
 	constructor(app: ConstructorParameters<typeof PluginSettingTab>[0], readonly plugin: SubtitleSentenceMinerPlugin) { super(app, plugin); }
 
 	getSettingDefinitions(): SettingDefinitionItem[] {
+		// The product rows, then the "More from NoteMods" card (packages/hello).
+		return [...this.productSettingDefinitions(), ...helloSettingItems()];
+	}
+
+	productSettingDefinitions(): SettingDefinitionItem[] {
 		return [
 			...(this.plugin.pro ? sponsorsSettingItems(this.plugin.pro, PRO_UI) : []),
 			{ name: 'Output path', desc: 'Default path for a new Markdown note. An existing path gets a number.', control: { type: 'text', key: 'outputPath', defaultValue: DEFAULT_SETTINGS.outputPath } },

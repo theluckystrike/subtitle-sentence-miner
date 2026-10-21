@@ -52,6 +52,8 @@ Choose “Add source (Pro)” to add cues from another local subtitle file. Set 
 
 ## Install
 
+Open Settings, Community plugins, Browse. Search for "Subtitle Sentence Miner". Select Install, then Enable.
+
 For a manual install, copy `main.js`, `manifest.json` and `styles.css` from the release into `<vault>/.obsidian/plugins/subtitle-sentence-miner/`. Use your configured Obsidian folder if it differs from `.obsidian`. Enable the plugin in Community plugins. Obsidian 1.13.4 or later is required.
 
 The plugin does not install a player or study application. The created notes are Markdown files you can edit with the plugin disabled.
@@ -67,6 +69,8 @@ The plugin does not install a player or study application. The created notes are
 A session reads a snapshot of the subtitle text. Close and reopen the source after changing that file. Closing the cue list clears its selection and answers. Saved templates and the default output path remain in plugin settings.
 
 ## Settings
+
+After a minor or major update, this plugin opens one What's new tab in the background. The tab and settings card suggest other NoteMods plugins and Zovo Chat and link to notemods.com for feedback ([privacy](https://notemods.com/privacy/)). The tab sends no data. Turn the tab off in Settings.
 
 “Output path” sets the default new note location. The initial value is `Sentence cards/Subtitle cards.md`. Existing notes get numbered alternatives. Use a vault-relative path with a `.md` extension. Parent directory traversal and paths inside the configured app folder are refused.
 
