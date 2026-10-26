@@ -1,7 +1,6 @@
 {
 	"name": "subtitle-sentence-miner",
-	"repository": {"type": "git", "url": "theluckystrike/subtitle-sentence-miner.git"},
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"private": true,
 	"description": "Create sentence cards from local subtitle files and keep each source path and timestamp.",
 	"main": "main.js",

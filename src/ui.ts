@@ -2,7 +2,7 @@
 import { Modal, Notice, Setting, SuggestModal, type TFile } from 'obsidian';
 import { DEFAULT_TEMPLATE, exactCloze, renderCards, type Answer, type Card } from './cards';
 import { filterCues, formatTime, parseSubtitles, type Cue, type ParseResult } from './cues';
-import { isPro, onProChange } from './pro';
+import { isPro, onProChange, proNotice } from './pro';
 import SubtitleSentenceMinerPlugin, { showError } from './main';
 
 export class SourcePicker extends SuggestModal<TFile> {
@@ -54,7 +54,7 @@ export class MinerModal extends Modal {
 		new Setting(this.contentEl).setName('Combine subtitle files (Pro)').setDesc('Add another source to this card selection.').addButton((button) => {
 			button.buttonEl.dataset.ssm = 'add-source';
 			button.setButtonText('Add source (Pro)').onClick(() => {
-			if (!isPro()) { new Notice('Combined cards need Pro. Sign in with GitHub from settings.'); return; }
+			if (!isPro()) { proNotice('Combined cards need Pro.'); return; }
 			this.openChild(new SourcePicker(this.plugin, (file) => this.addSource(file)));
 			});
 		});
@@ -63,13 +63,13 @@ export class MinerModal extends Modal {
 			dropdown.addOption('', 'Default Markdown');
 			for (const template of this.plugin.settings.templates) dropdown.addOption(template.name, template.name);
 			dropdown.onChange((value) => {
-				if (value && !isPro()) { dropdown.setValue(''); new Notice('Saved templates need Pro.'); return; }
+				if (value && !isPro()) { dropdown.setValue(''); proNotice('Saved templates need Pro.'); return; }
 				this.templateName = value;
 			});
 		}).addButton((button) => {
 			button.buttonEl.dataset.ssm = 'save-template';
 			button.setButtonText('Save template (Pro)').onClick(() => {
-			if (!isPro()) { new Notice('Saved templates need Pro. Sign in with GitHub from settings.'); return; }
+			if (!isPro()) { proNotice('Saved templates need Pro.'); return; }
 			this.openChild(new TemplateModal(this.plugin, () => { this.close(); new Notice('Template saved. Open a subtitle file to use it.'); }));
 			});
 		});

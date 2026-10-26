@@ -3,7 +3,7 @@ import type { SponsorsManager } from './license/index';
 import { createGitHubSponsors } from './license/github-obsidian';
 import { availablePath, renderCards, validateOutputPath, validateTemplate, type Card, type CardTemplate } from './cards';
 import { parseSubtitles } from './cues';
-import { SPONSORS, bindPro, isPro, resetPro } from './pro';
+import { SPONSORS, bindPro, isPro, resetPro, proText } from './pro';
 import { DEFAULT_SETTINGS, SubtitleSentenceMinerSettingTab, normalizeSettings, type SubtitleSentenceMinerSettings } from './settings';
 import { MinerModal, SourcePicker } from './ui';
 import { setupHello } from './hello/index';
@@ -74,7 +74,7 @@ export default class SubtitleSentenceMinerPlugin extends Plugin {
 	async saveSettings(): Promise<void> { await this.saveData(this.settings); }
 
 	async saveTemplate(template: CardTemplate): Promise<void> {
-		if (!isPro()) throw new Error('Saved templates need Pro. Sponsor on GitHub, then sign in from settings.');
+		if (!isPro()) throw new Error(proText('Saved templates need Pro.'));
 		validateTemplate(template.body);
 		const name = template.name.trim();
 		if (!name || name.length > 80) throw new Error('Use a template name with 1 to 80 characters.');
